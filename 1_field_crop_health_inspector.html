@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-container":"#86af99","secondary-fixed-dim":"#4edea3","on-surface-variant":"#414844","tertiary-fixed-dim":"#ffb77d","on-primary-fixed":"#002114","on-tertiary-container":"#f48c24","error":"#ba1a1a","primary":"#012d1d","tertiary":"#3e1e00","outline":"#717973","surface-bright":"#faf8ff","on-tertiary":"#ffffff","on-secondary":"#ffffff","surface-dim":"#d2d9f4","inverse-on-surface":"#eef0ff","surface-tint":"#3f6653","primary-fixed-dim":"#a5d0b9","surface-container-high":"#e2e7ff","background":"#faf8ff","on-error":"#ffffff","on-surface":"#131b2e","secondary-container":"#6cf8bb","on-secondary-fixed":"#002113","outline-variant":"#c1c8c2","on-tertiary-fixed-variant":"#6e3900","on-secondary-container":"#00714d","inverse-primary":"#a5d0b9","primary-container":"#1b4332","on-background":"#131b2e","on-secondary-fixed-variant":"#005236","on-primary-fixed-variant":"#274e3d","surface":"#faf8ff","secondary":"#006c49","surface-container-low":"#f2f3ff","surface-container-lowest":"#ffffff","on-tertiary-fixed":"#2f1500","primary-fixed":"#c1ecd4","secondary-fixed":"#6ffbbe","surface-variant":"#dae2fd","surface-container-highest":"#dae2fd","tertiary-container":"#5e3000","surface-container":"#eaedff","tertiary-fixed":"#ffdcc3","error-container":"#ffdad6","on-primary":"#ffffff","inverse-surface":"#283044","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-tablet":"1.5rem","space-lg":"1.25rem","space-xl":"2rem","gutter":"1rem","space-sm":"0.5rem","space-md":"0.75rem","margin-desktop":"2rem","space-xs":"0.25rem","margin":"1rem","gutter-desktop":"1.5rem"},"fontFamily":{"body-md":["Inter"],"body-lg":["Inter"],"display-lg":["Inter"],"headline-sm":["Inter"],"display-lg-mobile":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"headline-lg-mobile":["Inter"],"telemetry-data":["JetBrains Mono"],"label-md":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"body-sm":["Inter"]},"fontSize":{"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["3rem",{"lineHeight":"3.5rem","letterSpacing":"-0.03em","fontWeight":"700"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg-mobile":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg-mobile":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.01em","fontWeight":"600"}],"telemetry-data":["1.25rem",{"lineHeight":"1.5rem","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.04em","fontWeight":"500"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.05em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-16 px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img alt="AgriSense Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrA4yDSu8fnJB82h94yOsRVawgvHO_Vu7P7fItZtrIWxf8B1aUhcsJy6__XFUVXg3N3eOvOyttgSQvEJwIlosNFaH7-tX0BHHzgpKFyG1eJpS63Kj94PgBoXdzeGjhdQUe5_fBt-pIrqJrQ5YWgglNQCY_1GFFPKrcPOu9ISUC76ijIKGIcRhb1aZVxmEKj2itodJtSxVqcHYYqzP_U_8GcM7gp45c2PUptiHn5X051QFg"/><div class="flex flex-col"><a href="3_farm_overview_live_telemetry.html" class="hover:opacity-80 transition-opacity"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">AgriSense</span></a><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Telemetry OS</span></div></div><div class="h-6 w-px bg-outline-variant/40 hidden md:block"></div><div class="hidden md:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg border border-outline-variant/30 text-on-surface hover:border-secondary transition-colors cursor-pointer"><span class="material-symbols-outlined text-secondary text-lg">location_on</span><div class="flex flex-col"><span class="font-body-sm text-body-sm font-semibold text-on-surface leading-none">Highland Ridge Orchards &amp; Fields</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none mt-0.5">1,420 Acres • Sector 04-A</span></div><span class="material-symbols-outlined text-on-surface-variant text-base ml-space-xs">expand_more</span></div></div><div class="hidden xl:flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full border border-outline-variant/30"><span class="material-symbols-outlined text-tertiary-container text-base">wb_sunny</span><span class="font-label-sm text-label-sm font-semibold text-on-surface">72°F Sunny</span><span class="text-outline-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">64% RH</span><span class="text-outline-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Wind 8mph NW</span></div><div class="flex items-center gap-space-xs bg-secondary-container/20 border border-secondary/30 px-space-md py-space-xs rounded-full"><span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-semibold">Sensors Active: 48/48 Online</span></div></div><div class="flex items-center gap-space-md shrink-0"><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-label-sm text-[0.625rem] font-bold">3</span></button><div class="h-6 w-px bg-outline-variant/40"></div><a href="6_enterprise_login_authentication.html" title="Switch User / Logout" class="hover:opacity-80 transition-opacity flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgcviLBdqHeR6DPOz6ZArbNTAmJRVe2dF_m6z0w3o0sZMymPCtwwoC2_r5xS9A0Ucjg16D4js7DBHrwyJCDs13kkxIJy1mkPx_XOulLuhI7R8b2eJXFF2rb0Lponmc-req6GIjLRK8jGJAMQFOdzsrZqOBKKS6oCwyen9jmeMP0VeHF8fHc315O6f-QEIGALOmfpy-1PssVREM5SoHgxLZCULz_8vRpYHXeyXF4Z9Q"/><div class="hidden lg:flex flex-col text-left"><span class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">Marcus Vance</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Chief Agronomist</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant/30 z-40 flex flex-col justify-between p-space-md"><div class="flex flex-col gap-space-md"><div class="px-space-sm pt-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline tracking-wider font-semibold">Field Modules</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="overview" href="3_farm_overview_live_telemetry.html"><span class="material-symbols-outlined text-xl">grid_view</span><span class="font-body-md text-body-md">Overview</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-sm" data-path="field-inspector" href="1_field_crop_health_inspector.html"><span class="material-symbols-outlined text-xl">satellite_alt</span><span class="font-body-md text-body-md">Field Inspector</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="irrigation-resources" href="2_irrigation_resource_management.html"><span class="material-symbols-outlined text-xl">water_drop</span><span class="font-body-md text-body-md">Irrigation &amp; Resources</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="ai-diagnostic" href="4_agri_ai_diagnostic_advisory.html"><span class="material-symbols-outlined text-xl">psychology</span><span class="font-body-md text-body-md">AI Diagnostic</span></a></nav></div><div class="flex flex-col gap-space-sm border-t border-outline-variant/30 pt-space-md px-space-sm"><div class="bg-surface-container-low p-space-sm rounded-lg border border-outline-variant/20"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Telemetry Stream</span><span class="font-label-sm text-label-sm text-secondary font-mono">99.98%</span></div><div class="w-full bg-outline-variant/30 h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full w-[99.98%]"></div></div><div class="flex justify-between items-center mt-space-xs text-on-surface-variant font-label-sm text-label-sm"><span>Gateway 04-Nordic</span><span>Ping 14ms</span></div></div><div class="flex items-center justify-between text-on-surface-variant pt-space-xs"><span class="font-label-sm text-label-sm">Mesh v3.8.4-ag</span><span class="material-symbols-outlined text-sm cursor-pointer hover:text-on-surface">settings</span></div></div></aside><div class="pl-64"><main class="relative w-full pt-16 bg-background min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Navigation & Context Bar -->
+<section class="flex flex-col gap-space-md">
+<!-- Breadcrumb & Direct Status -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span>Field Inspector</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Highland Ridge</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-secondary font-semibold">Parcel B - Corn &amp; Soybean Mixed</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Sector Health &amp; Spectral Telemetry</h1>
+<span class="inline-flex items-center gap-space-xs bg-secondary-container/30 text-on-secondary-container px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary animate-ping"></span>
+            Sync Live: Sentinel-2 Multispectral
+          </span>
+</div>
+</div>
+<!-- Quick Action Controls & Satellite Timestamp -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-secondary text-base">satellite_alt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Pass: Today, 08:30 AM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sentinel-2 • 10m Ground Res</span>
+</div>
+</div>
+<button class="flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg shadow-sm font-body-sm text-body-sm font-semibold transition-all" id="compareBtn">
+<span class="material-symbols-outlined text-base">compare</span>
+<span>Compare vs 14d Ago</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary hover:bg-primary-container px-space-md py-space-sm rounded-lg shadow-sm font-body-sm text-body-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-base">sync</span>
+<span>Request Tasking</span>
+</button>
+</div>
+</div>
+<!-- Sector Switcher Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs">
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">
+        All Sectors (1,420 ac)
+      </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">
+        Sector A - Winter Wheat (380 ac)
+      </button>
+<button class="px-space-md py-space-xs rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold whitespace-nowrap shadow-sm">
+        Sector B - Sweet Corn (Selected, 320 ac)
+      </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">
+        Sector C - Organic Soybeans (410 ac)
+      </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">
+        Sector D - Apple Orchards (310 ac)
+      </button>
+</div>
+<!-- Layer Switcher Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-sm rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase px-space-xs font-semibold">Active Layer:</span>
+<button class="layer-pill flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-sm">energy_savings_leaf</span>
+<span>NDVI Spectral Health</span>
+</button>
+<button class="layer-pill flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-sm">thermostat</span>
+<span>Thermal Water Stress (CWSI)</span>
+</button>
+<button class="layer-pill flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-sm">grain</span>
+<span>Soil Conductivity (EC)</span>
+</button>
+<button class="layer-pill flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-sm">waterfall_chart</span>
+<span>Hydrologic Drainage</span>
+</button>
+<button class="layer-pill flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-sm">landscape</span>
+<span>Elevation &amp; Biomass</span>
+</button>
+</div>
+<!-- Spectral Index Gauge Legend -->
+<div class="flex items-center gap-space-sm px-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">NDVI Index:</span>
+<span class="font-label-sm text-label-sm font-semibold text-error">0.15 (Stressed)</span>
+<div class="w-32 h-2.5 rounded-full overflow-hidden flex bg-surface-container-high shadow-inner">
+<div class="w-1/4 h-full bg-error"></div>
+<div class="w-1/4 h-full bg-tertiary-fixed-dim"></div>
+<div class="w-1/4 h-full bg-secondary-fixed-dim"></div>
+<div class="w-1/4 h-full bg-secondary"></div>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">0.92 (Dense Canopy)</span>
+</div>
+</div>
+</section>
+<!-- Main GIS Map View & Right Analytical Inspector Drawer -->
+<section class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Vector GIS Map Visualizer (Left Col - Span 8) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Map Canvas Frame -->
+<div class="relative w-full h-[620px] rounded-xl overflow-hidden bg-primary shadow-xl select-none group">
+<!-- High-res Orthomosaic Field Base Texture Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center opacity-75 mix-blend-overlay transition-opacity duration-700" data-alt="High-resolution aerial satellite orthomosaic photography of precision agricultural farmland divided into geometric parcels with rich soil texture, center-pivot rings, tractor lines, lush green crop patches, crisp irrigation paths, bathed in crisp morning light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxnzIsc9Hmp_LZzxYfws8NoT9dG3c1CQL1ZOAg_VhUIW943ZxLKr8yELN2R0wnDjkOi4Gzif-cSFcRsK6vU_xuqSYHr1pDlWC0ljdUGKONm9YvC5k6NUFbAEAzreD668pAxCIe-S8hzUgR0xjajruNUFd_bLQay7z87zSeBV6J_IxrkWI71JO2a0F-0x-aASc_ntuh1yWBGJMNHSV7riEHNSB9ojSabZJH15xoDOm5')">
+</div>
+<!-- Ambient SVG Grid & Telemetry Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"></path>
+</pattern>
+<!-- Sector B-3 Thermal/Chlorophyll Gradient -->
+<radialgradient cx="62%" cy="48%" id="stressHeatmap" r="28%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.82"></stop>
+<stop offset="35%" stop-color="#f48c24" stop-opacity="0.65"></stop>
+<stop offset="70%" stop-color="#4edea3" stop-opacity="0.45"></stop>
+<stop offset="100%" stop-color="#006c49" stop-opacity="0.1"></stop>
+</radialgradient>
+<!-- Sector B-1 Healthy Canopy Gradient -->
+<radialgradient cx="30%" cy="30%" id="healthyHeatmap" r="35%">
+<stop offset="0%" stop-color="#006c49" stop-opacity="0.75"></stop>
+<stop offset="60%" stop-color="#4edea3" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#006c49" stop-opacity="0.05"></stop>
+</radialgradient>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+<!-- Field Boundary Geometry Overlays -->
+<!-- Sector B-1 Polygon -->
+<polygon fill="url(#healthyHeatmap)" points="40,30 260,20 280,240 60,250" stroke="#4edea3" stroke-dasharray="4 2" stroke-width="1.5"></polygon>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="11" font-weight="600" opacity="0.9" x="70" y="55">SECTOR B-1 • 85.2 AC</text>
+<!-- Sector B-2 Polygon -->
+<polygon fill="#006c49" fill-opacity="0.32" points="275,22 560,35 540,260 295,245" stroke="#6cf8bb" stroke-width="1.5"></polygon>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="11" font-weight="600" opacity="0.9" x="300" y="60">SECTOR B-2 • 92.4 AC</text>
+<!-- Sector B-3 Critical Focus Polygon (Selected) -->
+<polygon class="animate-pulse" fill="url(#stressHeatmap)" points="310,270 650,285 620,580 270,550" stroke="#ffb77d" stroke-width="2.5"></polygon>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="12" font-weight="700" x="325" y="305">SECTOR B-3 (SELECTED) • 42.5 AC</text>
+<text fill="#ffdad6" font-family="Inter" font-size="10" x="325" y="325">Moisture Deficit Zone Detected</text>
+<!-- Sector B-4 Soybeans South Polygon -->
+<polygon fill="#006c49" fill-opacity="0.25" points="50,275 255,265 250,560 40,540" stroke="#6cf8bb" stroke-width="1"></polygon>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="11" opacity="0.8" x="65" y="305">SECTOR B-4 • 99.9 AC</text>
+<!-- Hydrologic Drainage Line Vector -->
+<path d="M 280,180 Q 340,320 460,420 T 630,550" fill="none" opacity="0.65" stroke="#6cf8bb" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<!-- Top Left Map Status Chips -->
+<div class="absolute top-4 left-4 flex flex-col gap-space-xs pointer-events-none z-10">
+<div class="flex items-center gap-space-xs bg-inverse-surface/90 backdrop-blur-md px-space-md py-1 rounded-md text-inverse-on-surface font-label-sm text-label-sm shadow-md">
+<span class="material-symbols-outlined text-secondary text-sm">my_location</span>
+<span>43°18'42.2"N 89°22'14.8"W</span>
+</div>
+<div class="flex items-center gap-space-xs bg-inverse-surface/90 backdrop-blur-md px-space-md py-1 rounded-md text-inverse-on-surface font-label-sm text-label-sm shadow-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm">wb_sunny</span>
+<span>Solar Irradiance: 842 W/m²</span>
+</div>
+</div>
+<!-- Floating Map Control Dock -->
+<div class="absolute top-4 right-4 flex flex-col gap-space-xs z-10">
+<div class="flex flex-col bg-surface-container-lowest/95 backdrop-blur-md rounded-lg shadow-lg overflow-hidden">
+<button class="p-space-sm text-on-surface hover:bg-surface-container-low transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+<div class="h-px bg-surface-container"></div>
+<button class="p-space-sm text-on-surface hover:bg-surface-container-low transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<div class="h-px bg-surface-container"></div>
+<button class="p-space-sm text-on-surface hover:bg-surface-container-low transition-colors" title="Reset Tilt">
+<span class="material-symbols-outlined text-lg">explore</span>
+</button>
+<div class="h-px bg-surface-container"></div>
+<button class="p-space-sm text-on-surface hover:bg-surface-container-low transition-colors" title="Full Screen View">
+<span class="material-symbols-outlined text-lg">fullscreen</span>
+</button>
+</div>
+<button class="flex items-center justify-center p-space-sm bg-surface-container-lowest/95 backdrop-blur-md rounded-lg shadow-lg text-on-surface hover:bg-surface-container-low transition-colors" title="Switch Basemap Style">
+<span class="material-symbols-outlined text-lg">layers</span>
+</button>
+</div>
+<!-- Interactive Field Telemetry Sensor Pins -->
+<!-- Probe S-14 (Warning / Needs Water) -->
+<div class="absolute top-[52%] left-[58%] -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group/pin">
+<div class="relative flex items-center justify-center">
+<span class="absolute w-8 h-8 rounded-full bg-error/30 animate-ping"></span>
+<div class="w-8 h-8 rounded-full bg-error flex items-center justify-center text-on-error shadow-lg shadow-error/40 ring-4 ring-error-container/50">
+<span class="material-symbols-outlined text-sm font-bold">water_loss</span>
+</div>
+<!-- Tooltip Tag -->
+<div class="absolute left-10 top-1/2 -translate-y-1/2 bg-inverse-surface text-inverse-on-surface px-space-md py-space-xs rounded-lg shadow-xl whitespace-nowrap pointer-events-none flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold text-tertiary-fixed-dim">PROBE S-14</span>
+<span class="bg-error text-on-error px-1 py-0.2 rounded font-label-sm text-[10px]">18% VWC</span>
+</div>
+<span class="font-body-sm text-[11px] text-surface-dim">Rootzone Deficit • Needs Water</span>
+</div>
+</div>
+</div>
+<!-- Probe S-15 (Optimal) -->
+<div class="absolute top-[32%] left-[38%] -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group/pin">
+<div class="relative flex items-center justify-center">
+<div class="w-7 h-7 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-lg shadow-secondary/40 ring-2 ring-secondary-container">
+<span class="material-symbols-outlined text-xs">water_drop</span>
+</div>
+<div class="absolute left-9 top-1/2 -translate-y-1/2 bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-0.5 rounded shadow-lg whitespace-nowrap hidden group-hover/pin:flex items-center gap-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary-fixed">PROBE S-15</span>
+<span class="font-label-sm text-[10px] text-surface-dim">• 31% Moisture</span>
+</div>
+</div>
+</div>
+<!-- Probe S-12 (Optimal North) -->
+<div class="absolute top-[18%] left-[18%] -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group/pin">
+<div class="relative flex items-center justify-center">
+<div class="w-7 h-7 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-lg ring-2 ring-secondary-container">
+<span class="material-symbols-outlined text-xs">sensors</span>
+</div>
+<div class="absolute left-9 top-1/2 -translate-y-1/2 bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-0.5 rounded shadow-lg whitespace-nowrap hidden group-hover/pin:flex items-center gap-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary-fixed">PROBE S-12</span>
+<span class="font-label-sm text-[10px] text-surface-dim">• 34% Soil Water</span>
+</div>
+</div>
+</div>
+<!-- Autonomous Drone Anomaly Flag Pin -->
+<div class="absolute top-[44%] left-[69%] -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group/drone">
+<div class="relative flex items-center justify-center">
+<div class="flex items-center gap-space-xs bg-tertiary-container text-tertiary-fixed px-space-sm py-1 rounded-full shadow-lg border border-tertiary-fixed-dim/40 ring-2 ring-tertiary-container/30">
+<span class="material-symbols-outlined text-sm">flight</span>
+<span class="font-label-sm text-label-sm font-semibold">Drone Scan: Aphid Cluster (78% Conf)</span>
+</div>
+</div>
+</div>
+<!-- Bottom Heatmap Layer Opacity Controller Floating Strip -->
+<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-space-xs rounded-xl shadow-lg border border-white/20">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-base">opacity</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Overlay Opacity:</span>
+<input class="w-28 h-1.5 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-secondary" max="100" min="0" type="range" value="85"/>
+<span class="font-label-sm text-label-sm font-mono text-on-surface">85%</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+<span>Canopy Vigor: 88.4% Avg</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="h-2 w-2 rounded-full bg-error"></span>
+<span>Stress Cluster: 4.8 Acres</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Telemetry Row (Below Canvas) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Sub-metric 1 -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="p-space-sm bg-secondary-container/20 rounded-lg text-secondary">
+<span class="material-symbols-outlined text-2xl">grass</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Average Sector Biomass</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-data text-telemetry-data text-primary">6.42</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">t/ha</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold ml-space-xs">+4.1% MoM</span>
+</div>
+</div>
+</div>
+<!-- Sub-metric 2 -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="p-space-sm bg-surface-container-high rounded-lg text-on-surface">
+<span class="material-symbols-outlined text-2xl">device_thermostat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Canopy Temp Delta</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-data text-telemetry-data text-error">+2.8°F</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">above ambient</span>
+</div>
+</div>
+</div>
+<!-- Sub-metric 3 -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="p-space-sm bg-tertiary-fixed/40 rounded-lg text-tertiary">
+<span class="material-symbols-outlined text-2xl">air</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Evapotranspiration (ET)</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-data text-telemetry-data text-primary">5.1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">mm/day</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold ml-space-xs">Balanced</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Inspector & Diagnostic Drawer (Col - Span 4) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Zone Card & Phenological Status -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-bold text-secondary">Target Zone</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">High Alert</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Sector B-3 (42.5 Acres)</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Crop: Pioneer Corn 1197 • Hybrid Grain</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-2xl">info</span>
+</div>
+<!-- Phenological Stage Tracker Bar -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-on-surface">Growth Stage: V8 Stage</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">Tasseling in 14 Days</span>
+</div>
+<!-- Multi-step phenology gauge -->
+<div class="w-full grid grid-cols-5 gap-1 py-1">
+<div class="h-2 rounded-full bg-secondary" title="Emergence (VE)"></div>
+<div class="h-2 rounded-full bg-secondary" title="V4 Stage"></div>
+<div class="h-2 rounded-full bg-secondary ring-2 ring-secondary/50" title="V8 Stage (Current)"></div>
+<div class="h-2 rounded-full bg-surface-container-high" title="V12 Stage"></div>
+<div class="h-2 rounded-full bg-surface-container-high" title="VT / R1 Silking"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-sm text-[10px]">
+<span>Emergence</span>
+<span class="font-semibold text-on-surface">V8 Current</span>
+<span>R1 Harvest Peak</span>
+</div>
+</div>
+<!-- Multispectral Key Breakdown Metrics -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-outline">Spectral Health Indices</span>
+<div class="grid grid-cols-3 gap-space-sm text-center">
+<!-- Metric 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Chlorophyll (CAR)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-secondary mt-1">82%</span>
+<span class="font-label-sm text-[10px] text-secondary font-semibold">Good Index</span>
+</div>
+<!-- Metric 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Leaf Area (LAI)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary mt-1">3.8</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Optimal: 4.0</span>
+</div>
+<!-- Metric 3 -->
+<div class="p-space-sm rounded-lg bg-error-container/40 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Water Stress (CWSI)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-error mt-1">0.42</span>
+<span class="font-label-sm text-[10px] text-error font-semibold">Mild Stress</span>
+</div>
+</div>
+</div>
+<!-- Multi-Spectral Historical Comparison Chart (Inline SVG) -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-outline">NDVI Seasonal Trajectory</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">May 01 – Jun 18</span>
+</div>
+<div class="w-full h-32 bg-surface-container-low rounded-lg p-space-sm relative flex flex-col justify-end">
+<!-- Inline Chart SVG -->
+<svg class="w-full h-24 overflow-visible" preserveaspectratio="none" viewbox="0 0 300 100">
+<!-- Horizontal gridlines -->
+<line stroke="rgba(0,0,0,0.06)" stroke-width="1" x1="0" x2="300" y1="20" y2="20"></line>
+<line stroke="rgba(0,0,0,0.06)" stroke-width="1" x1="0" x2="300" y1="50" y2="50"></line>
+<line stroke="rgba(0,0,0,0.06)" stroke-width="1" x1="0" x2="300" y1="80" y2="80"></line>
+<!-- 5-Year Average Benchmark Line (Dotted Gray) -->
+<path d="M 0,85 C 50,82 100,65 150,52 C 200,42 250,32 300,22" fill="none" opacity="0.6" stroke="#717973" stroke-dasharray="4 3" stroke-width="2"></path>
+<!-- Current Season NDVI Area Fill -->
+<defs>
+<lineargradient id="ndviChartFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#006c49" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#006c49" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M 0,88 C 50,84 100,60 150,45 C 200,38 230,42 260,54 L 260,100 L 0,100 Z" fill="url(#ndviChartFill)"></path>
+<!-- Current Season Line (Solid Green with recent dip) -->
+<path d="M 0,88 C 50,84 100,60 150,45 C 200,38 230,42 260,54" fill="none" stroke="#006c49" stroke-width="2.5"></path>
+<!-- Current Observation Point with Pulse -->
+<circle cx="260" cy="54" fill="#ba1a1a" r="4.5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-[10px] pt-1">
+<span>May 01 (0.22)</span>
+<span class="text-secondary font-semibold">5-Yr Avg: 0.78</span>
+<span class="text-error font-bold">Now: 0.68 (Dip)</span>
+</div>
+</div>
+</div>
+<!-- Prescriptive Action / AI Agronomic Advisory Box -->
+<div class="bg-surface-container-high/40 rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-secondary text-lg">smart_toy</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider">Agronomic AI Recommendation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+            Moisture depletion in rootzone node <strong>Probe S-14</strong> is accelerating CWSI degradation. Increase drip irrigation cycle by <strong>25 mins tonight</strong> to restore turgor before 30°C heat index tomorrow.
+          </p>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-[11px] pt-1">
+<span class="material-symbols-outlined text-sm text-tertiary">schedule</span>
+<span>Drone multispectral verification pass scheduled for 16:00 CST</span>
+</div>
+</div>
+<!-- Direct Dispatch & Field Action Buttons -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full flex items-center justify-center gap-space-sm bg-primary text-on-primary hover:bg-primary-container px-space-md py-space-md rounded-lg font-body-sm text-body-sm font-semibold shadow-md transition-all" id="dispatchOrderBtn">
+<span class="material-symbols-outlined text-lg">assignment_turned_in</span>
+<span>Generate Field Treatment Order</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="flex items-center justify-center gap-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-space-sm rounded-lg font-label-sm text-label-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Export GeoJSON</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-space-sm rounded-lg font-label-sm text-label-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-base">share_location</span>
+<span>Send to Tractor GIS</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Field In-Situ Microclimate Telemetry Sensor Strip -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-outline">Soil Profile Depth Matrix (Probe S-14)</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">Mesh ID: #4092</span>
+</div>
+<div class="flex flex-col gap-space-xs pt-1">
+<!-- 10cm depth -->
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-sm">Depth 10 cm (Topsoil)</span>
+<div class="w-1/2 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[18%]"></div>
+</div>
+<span class="font-mono text-label-sm font-bold text-error">18% VWC</span>
+</div>
+<!-- 30cm depth -->
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-sm">Depth 30 cm (Rooting Zone)</span>
+<div class="w-1/2 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full w-[26%]"></div>
+</div>
+<span class="font-mono text-label-sm font-bold text-tertiary">26% VWC</span>
+</div>
+<!-- 60cm depth -->
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-sm">Depth 60 cm (Subsoil Reserve)</span>
+<div class="w-1/2 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[38%]"></div>
+</div>
+<span class="font-mono text-label-sm font-bold text-secondary">38% VWC</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Modal Container: Dispatch Order Confirmation -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="dispatchModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-xl shadow-2xl flex flex-col gap-space-md animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm text-primary">
+<div class="p-space-xs bg-secondary-container/30 text-secondary rounded-lg">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm">Generate Treatment Work Order</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sector B-3 Pioneer Corn 1197</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" id="closeModalBtn">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="space-y-space-sm text-body-md text-on-surface">
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Recommended Action:</span>
+<span class="font-semibold text-secondary">Variable Rate Irrigation Pulse</span>
+</div>
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Coverage Area:</span>
+<span class="font-mono font-semibold">42.5 Acres (Zones S-14, S-15)</span>
+</div>
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Target Application:</span>
+<span class="font-mono font-semibold">12,400 gal / +25 min Run Time</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          This order will be automatically synced with Highland Ridge Center Pivot telemetry and John Deere Operations Center.
+        </p>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-space-sm text-on-surface-variant hover:text-on-surface font-label-md text-label-md" id="cancelModalBtn">
+          Cancel
+        </button>
+<button class="flex items-center gap-space-xs bg-secondary text-on-secondary hover:bg-secondary/90 px-space-lg py-space-sm rounded-lg font-label-md text-label-md font-bold shadow-md" id="confirmOrderBtn">
+<span class="material-symbols-outlined text-sm">send</span>
+<span>Transmit to Field Hub</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    // Layer Pill Toggle Interactive Behavior
+    const layerPills = document.querySelectorAll('.layer-pill');
+    layerPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        layerPills.forEach(p => {
+          p.classList.remove('bg-primary-container', 'text-on-primary');
+          p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+        });
+        pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        pill.classList.add('bg-primary-container', 'text-on-primary');
+      });
+    });
+
+    // Dispatch Modal Interactions
+    const modal = document.getElementById('dispatchModal');
+    const dispatchBtn = document.getElementById('dispatchOrderBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const cancelBtn = document.getElementById('cancelModalBtn');
+    const confirmBtn = document.getElementById('confirmOrderBtn');
+
+    if (dispatchBtn && modal) {
+      dispatchBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+      [closeBtn, cancelBtn].forEach(b => {
+        b.addEventListener('click', () => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        });
+      });
+      confirmBtn.addEventListener('click', () => {
+        confirmBtn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> Transmitted!';
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          confirmBtn.innerHTML = '<span class="material-symbols-outlined text-sm">send</span><span>Transmit to Field Hub</span>';
+        }, 900);
+      });
+    }
+  </script>
+</div></main></div>
+<!-- AgriSense Quick Navigation Dock -->
+<div id="agrisense-nav-dock" style="position: fixed; bottom: 16px; right: 16px; z-index: 99999; display: flex; align-items: center; gap: 8px; background: rgba(1, 45, 29, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(108, 248, 187, 0.3); padding: 8px 12px; border-radius: 9999px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); font-family: Inter, system-ui, sans-serif; font-size: 12px;">
+  <a href="index.html" style="color: #6cf8bb; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,0.08);" title="Portal Hub">
+    <span style="font-size: 14px;">🏠</span> Hub
+  </a>
+  <span style="color: rgba(255,255,255,0.2);">|</span>
+  <a href="3_farm_overview_live_telemetry.html" style="color: #e2e7ff; text-decoration: none; font-weight: 500; padding: 4px 6px; border-radius: 4px;" title="Overview">Overview</a>
+  <a href="1_field_crop_health_inspector.html" style="color: #e2e7ff; text-decoration: none; font-weight: 500; padding: 4px 6px; border-radius: 4px;" title="Field Inspector">Inspector</a>
+  <a href="2_irrigation_resource_management.html" style="color: #e2e7ff; text-decoration: none; font-weight: 500; padding: 4px 6px; border-radius: 4px;" title="Irrigation">Irrigation</a>
+  <a href="4_agri_ai_diagnostic_advisory.html" style="color: #e2e7ff; text-decoration: none; font-weight: 500; padding: 4px 6px; border-radius: 4px;" title="AI Advisory">AI Diagnostic</a>
+  <a href="5_high_tech_agricultural_field_dawn.html" style="color: #e2e7ff; text-decoration: none; font-weight: 500; padding: 4px 6px; border-radius: 4px;" title="Dawn Machinery">Showcase</a>
+  <a href="6_enterprise_login_authentication.html" style="color: #6cf8bb; text-decoration: none; font-weight: 600; padding: 4px 6px; border-radius: 4px;" title="Login">Login</a>
+</div>
+
+</body></html>

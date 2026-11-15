@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: agrisense
+      POSTGRES_USER: agrisense
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Please set DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - agrisense-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  agrisense-postgres-data:
+

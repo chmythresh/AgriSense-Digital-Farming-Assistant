@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="shell-type" content="web_dashboard">
+<title>AgriSense - AI Crop Diagnostics</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#012d1d",
+        "primary-container": "#1b4332",
+        secondary: "#006c49",
+        "secondary-container": "#6cf8bb",
+        background: "#faf8ff",
+        surface: "#faf8ff",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f2f3ff",
+        "surface-container": "#eaedff",
+        "surface-container-high": "#e2e7ff",
+        "surface-container-highest": "#dae2fd",
+        "on-surface": "#131b2e",
+        "on-surface-variant": "#414844",
+        outline: "#717973",
+        "outline-variant": "#c1c8c2",
+        error: "#ba1a1a",
+        "error-container": "#ffdad6",
+        tertiary: "#3e1e00",
+        "tertiary-container": "#5e3000",
+        "tertiary-fixed": "#ffdcc3",
+        "tertiary-fixed-dim": "#ffb77d"
+      },
+      fontFamily: {
+        body: ["Inter"],
+        mono: ["JetBrains Mono"]
+      }
+    }
+  }
+};
+</script>
+
+<style>
+html,body { margin:0; padding:0; }
+body { overscroll-behavior:none; }
+::-webkit-scrollbar { display:none; }
+</style>
+</head>
+
+<body class="bg-background font-body text-on-surface antialiased">
+
+<!-- TOP HEADER -->
+<header class="fixed top-0 left-0 right-0 h-16 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
+<div class="w-full h-16 px-6 flex items-center justify-between gap-4">
+
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<img alt="AgriSense Logo" class="h-8 w-auto object-contain"
+src="https://lh3.googleusercontent.com/aida/ALJJyrA4yDSu8fnJB82h94yOsRVawgvHO_Vu7P7fItZtrIWxf8B1aUhcsJy6__XFUVXg3N3eOvOyttgSQvEJwIlosNFaH7-tX0BHHzgpKFyG1eJpS63Kj94PgBoXdzeGjhdQUe5_fBt-pIrqJrQ5YWgglNQCY_1GFFPKrcPOu9ISUC76ijIKGIcRhb1aZVxmEKj2itodJtSxVqcHYYqzP_U_8GcM7gp45c2PUptiHn5X051QFg">
+<div>
+<a href="3_farm_overview_live_telemetry.html" class="font-bold text-xl text-primary">AgriSense</a>
+<div class="text-xs text-gray-500 uppercase tracking-wider">Telemetry OS</div>
+</div>
+</div>
+
+<div class="hidden md:flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<div>
+<div class="text-sm font-semibold">Highland Ridge Orchards & Fields</div>
+<div class="text-xs text-gray-500">1,420 Acres • Sector 04-A</div>
+</div>
+</div>
+</div>
+
+<div class="hidden xl:flex items-center gap-3">
+<div class="bg-gray-100 rounded-full px-4 py-2 text-xs">
+☀ 72°F Sunny • 64% RH • Wind 8mph NW
+</div>
+<div class="bg-green-50 border border-green-200 rounded-full px-4 py-2 text-xs text-green-800">
+● Sensors Active: 48/48 Online
+</div>
+</div>
+
+<div class="flex items-center gap-3">
+<button class="p-2 text-gray-500">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<a href="6_enterprise_login_authentication.html" class="flex items-center gap-2">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover"
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgcviLBdqHeR6DPOz6ZArbNTAmJRVe2dF_m6z0w3o0sZMymPCtwwoC2_r5xS9A0Ucjg16D4js7DBHrwyJCDs13kkxIJy1mkPx_XOulLuhI7R8b2eJXFF2rb0Lponmc-req6GIjLRK8jGJAMQFOdzsrZqOBKKS6oCwyen9jmeMP0VeHF8fHc315O6f-QEIGALOmfpy-1PssVREM5SoHgxLZCULz_8vRpYHXeyXF4Z9Q">
+<div class="hidden lg:block text-left">
+<div class="text-sm font-semibold">Marcus Vance</div>
+<div class="text-xs text-gray-500">Chief Agronomist</div>
+</div>
+</a>
+</div>
+</div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-gray-200 z-40 flex flex-col justify-between p-4">
+<div>
+<div class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">Field Modules</div>
+<nav class="flex flex-col gap-2">
+<a href="3_farm_overview_live_telemetry.html" class="p-3 rounded-lg text-gray-600 hover:bg-gray-100 flex gap-3">
+<span class="material-symbols-outlined">grid_view</span> Overview
+</a>
+<a href="1_field_crop_health_inspector.html" class="p-3 rounded-lg text-gray-600 hover:bg-gray-100 flex gap-3">
+<span class="material-symbols-outlined">satellite_alt</span> Field Inspector
+</a>
+<a href="2_irrigation_resource_management.html" class="p-3 rounded-lg text-gray-600 hover:bg-gray-100 flex gap-3">
+<span class="material-symbols-outlined">water_drop</span> Irrigation & Resources
+</a>
+<a href="4_agri_ai_diagnostic_advisory.html" class="p-3 rounded-lg bg-primary-container text-white font-semibold flex gap-3">
+<span class="material-symbols-outlined">psychology</span> AI Diagnostic
+</a>
+</nav>
+</div>
+
+<div class="border-t pt-4">
+<div class="bg-gray-50 p-3 rounded-lg">
+<div class="flex justify-between text-xs mb-2">
+<span>Telemetry Stream</span><b class="text-green-700">99.98%</b>
+</div>
+<div class="w-full bg-gray-200 h-1.5 rounded-full">
+<div class="bg-green-600 h-full w-full rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs text-gray-500 mt-2">
+<span>Gateway 04-Nordic</span><span>Ping 14ms</span>
+</div>
+</div>
+</div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="pl-64">
+<main class="pt-24 px-6 pb-24 min-h-screen">
+
+<!-- PAGE TITLE -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+<div>
+<div class="text-xs uppercase tracking-wider font-bold text-green-700 mb-1">
+● Neural Inference V4.2 • Active Cluster
+</div>
+<h1 class="text-3xl font-bold text-primary">Agri-AI Crop Diagnostics & Yield Advisory</h1>
+<p class="text-sm text-gray-500 mt-1">Deep-learning plant pathology scanner and prescriptive agronomy engine</p>
+</div>
+
+<div class="flex items-center gap-2 bg-white p-2 rounded-xl shadow-sm">
+<input class="bg-gray-100 rounded-lg px-3 py-2 text-sm min-w-48"
+placeholder="Lookup pathology, field sector, or chemical..." type="text">
+<button class="bg-gray-100 px-4 py-2 rounded-lg text-sm">Filter</button>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Batch Run</button>
+</div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+
+<!-- LEFT COLUMN -->
+<div class="xl:col-span-7 flex flex-col gap-6">
+
+<!-- SCANNER -->
+<div class="bg-white rounded-xl p-5 shadow-sm">
+<div class="flex justify-between items-center mb-4 flex-wrap gap-3">
+<div>
+<div class="font-bold text-primary">Active Sector Inspection</div>
+<div class="text-xs text-gray-500">Telemetry Source: Autonomous Drone Swarm Alpha-2</div>
+</div>
+<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold">94.6% MATCH</span>
+</div>
+
+<div class="relative rounded-xl overflow-hidden bg-gray-100 aspect-video">
+<img class="w-full h-full object-cover"
+alt="Corn leaf diagnostic scan"
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMbGXsWTgdJsM4qm5l3vwOFRasiX4yoSDo6Zvfobryezlce_fzewLzbSmm5H-degoz8qbIR88W2C0xAq71OahRROiGnQS_k1zfX9myBWKxD8zLzOLjm9vBKaMQpYa1Cekdl_kxFq-KFPTKRxu8hf51bul04ZIL89yzLSHTj1pNdiqadOpbWU7PTlA6UxzZPIGM6MAk1Qdzf5faT8ZghYtRagkG_uahF6T8Ys9mSfCh">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-1/3 left-1/4 border-2 border-green-400 bg-green-400/20 w-1/4 h-1/3 rounded"></div>
+<div class="absolute top-1/2 left-3/5 border-2 border-orange-400 bg-orange-400/20 w-1/5 h-1/4 rounded"></div>
+<div class="absolute bottom-3 left-3 right-3 bg-white/90 p-3 rounded-lg flex justify-between text-xs">
+<span class="font-bold">MULTISPECTRAL HEATMAP</span>
+<span class="font-mono">Scan ID: #NCLB-8831</span>
+</div>
+</div>
+</div>
+
+<!-- DIAGNOSIS -->
+<div class="bg-gray-50 rounded-xl p-5 flex flex-wrap justify-between items-center gap-4">
+<div>
+<h2 class="text-xl font-bold text-primary">Northern Corn Leaf Blight</h2>
+<p class="text-sm text-gray-500 italic">(Exserohilum turcicum)</p>
+<p class="text-sm mt-2">Severity: <b class="text-red-600">Grade 2 (Early Vegetative Outbreak)</b></p>
+<p class="text-sm text-gray-600">14 of 48 sample plants symptomatic in Sector 04-B.</p>
+</div>
+<div class="text-center bg-white p-4 rounded-xl">
+<div class="text-3xl font-bold text-green-700">94.6%</div>
+<div class="text-xs text-gray-500">CONFIDENCE</div>
+</div>
+</div>
+
+<!-- TREATMENT -->
+<div class="bg-white rounded-xl p-5 shadow-sm">
+<div class="flex flex-wrap justify-between items-center gap-3 mb-4">
+<h3 class="font-bold text-primary">Autonomous Treatment Prescription</h3>
+<label class="text-sm flex items-center gap-2">
+<input id="organicToggle" type="checkbox"> Organic Biological Alternative
+</label>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="bg-gray-50 p-4 rounded-xl">
+<div class="text-xs text-gray-500 uppercase">Primary Agent</div>
+<h4 class="font-bold mt-2" id="rxAgent">Azoxystrobin + Propiconazole</h4>
+<p class="text-xs text-gray-500 mt-1" id="rxRate">Rate: 14.0 fl oz / acre</p>
+</div>
+
+<div class="bg-gray-50 p-4 rounded-xl">
+<div class="text-xs text-gray-500 uppercase">Execution Window</div>
+<h4 class="font-bold mt-2">48 – 72 Hours</h4>
+<p class="text-sm text-red-600 mt-1">Rain forecast Thursday</p>
+</div>
+
+<div class="bg-gray-50 p-4 rounded-xl">
+<div class="text-xs text-gray-500 uppercase">Micro-Drift Window</div>
+<h4 class="font-bold text-green-700 mt-2">Tomorrow 06:00 – 10:00</h4>
+<p class="text-xs text-gray-500 mt-1">Wind less than 5.2 mph • RH 58%</p>
+</div>
+</div>
+
+<div class="mt-4 p-3 bg-gray-100 rounded-xl flex flex-wrap justify-between items-center gap-3">
+<span class="text-sm">Spray rig <b>Sprayer-Rig-402</b> calibrated for medium droplets (280µm).</span>
+<div class="flex gap-2">
+<button id="exportPrescriptionButton" class="bg-white px-4 py-2 rounded-lg text-sm">Export Prescription CSV</button>
+<button id="transmitRigButton" class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Transmit to Rig</button>
+</div>
+</div>
+</div>
+
+<!-- LIVE BACKEND DATA -->
+<div id="agrisense-live-diagnostics" class="my-2 p-5 border border-green-200 rounded-xl bg-green-50 text-green-950">
+<div class="flex flex-wrap justify-between items-center gap-3">
+<h3 class="text-lg font-bold">Live Backend Diagnostic Findings</h3>
+<span id="agrisense-diagnostic-status" class="text-sm font-semibold">Connecting...</span>
+</div>
+<div id="agrisense-diagnostic-results" class="mt-3">
+Loading diagnostic records from the server...
+</div>
+</div>
+
+<!-- HISTORY -->
+<div class="bg-white rounded-xl p-5 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div>
+<h3 class="font-bold text-primary">Diagnostic Fleet Ledger</h3>
+<p class="text-xs text-gray-500">Cross-sector multi-spectral scans from the past 48 hours</p>
+</div>
+<span class="text-xs text-gray-500">18 Scans Logged</span>
+</div>
+
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-gray-100 text-gray-500 uppercase text-xs">
+<tr>
+<th class="p-3">Field Scan</th>
+<th class="p-3">Crop / Field</th>
+<th class="p-3">Pathology / Finding</th>
+<th class="p-3">Severity</th>
+<th class="p-3">Confidence</th>
+<th class="p-3">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y">
+<tr>
+<td class="p-3">Scan 01</td>
+<td class="p-3">Soybean Pioneer 34</td>
+<td class="p-3">Frogeye Leaf Spot</td>
+<td class="p-3 text-red-600">Critical</td>
+<td class="p-3">97.8%</td>
+<td class="p-3 text-green-700">Treated</td>
+</tr>
+<tr>
+<td class="p-3">Scan 02</td>
+<td class="p-3">Winter Wheat Red-9</td>
+<td class="p-3">Healthy Canopy Baseline</td>
+<td class="p-3">Nominal</td>
+<td class="p-3">99.1%</td>
+<td class="p-3">Cleared</td>
+</tr>
+<tr>
+<td class="p-3">Scan 03</td>
+<td class="p-3">Honeycrisp Orchards</td>
+<td class="p-3">Powdery Mildew</td>
+<td class="p-3 text-orange-600">Moderate</td>
+<td class="p-3">91.4%</td>
+<td class="p-3">Queued</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<!-- RIGHT COLUMN -->
+<div class="xl:col-span-5 flex flex-col gap-6">
+
+<!-- YIELD -->
+<div class="bg-white rounded-xl p-5 shadow-sm">
+<h3 class="font-bold text-primary">Yield Projection Engine</h3>
+<p class="text-xs text-gray-500">Hybrid Bayesian crop growth simulation</p>
+
+<div class="mt-4 p-5 rounded-xl bg-gradient-to-br from-green-50 to-gray-100">
+<div class="text-xs uppercase text-gray-500">Projected Harvest Yield</div>
+<div class="text-4xl font-bold text-primary mt-2">218.4 <span class="text-lg">Bu/Acre</span></div>
+<div class="text-sm text-green-700 mt-2">↑ +8.4% vs County Avg (201.5 Bu/A)</div>
+</div>
+
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="bg-gray-50 rounded-xl p-4">
+<div class="text-xs text-gray-500">Est. Maturity Date</div>
+<div class="font-bold mt-2">Sep 28, 2025</div>
+<div class="text-xs text-gray-500">104 GDDs Remaining</div>
+</div>
+<div class="bg-gray-50 rounded-xl p-4">
+<div class="text-xs text-gray-500">Combine Moisture Target</div>
+<div class="font-bold mt-2">15.2% Ideal</div>
+<div class="text-xs text-gray-500">Current: 24.8%</div>
+</div>
+</div>
+</div>
+
+<!-- COPILOT -->
+<div class="bg-white rounded-xl p-5 shadow-sm flex flex-col gap-4">
+<div>
+<h3 class="font-bold text-primary">Agronomist AI Copilot</h3>
+<p class="text-xs text-green-700">Real-time Soil & Nutrient Intelligence</p>
+</div>
+
+<div id="copilotChatStream" class="flex flex-col gap-2 overflow-y-auto max-h-64 p-1">
+<div class="bg-gray-100 p-3 rounded-xl text-sm">
+<b class="text-primary">Marcus:</b> I noticed accelerated nitrogen leaching in Sector 03-C after Sunday's 2.4" deluge.
+<br><br>
+I recommend reviewing nitrogen levels before the crop reaches the critical V7 development stage.
+<div class="text-xs text-gray-500 mt-2">Confidence: 96.1%</div>
+</div>
+</div>
+
+<div class="flex flex-wrap gap-2">
+<button class="text-xs bg-gray-100 rounded-full px-3 py-2" onclick="appendAssistantQuery('Calculate side-dress application cost for Sector C')">Calculate application cost</button>
+<button class="text-xs bg-gray-100 rounded-full px-3 py-2" onclick="appendAssistantQuery('Check liquid UAN-32 fertilizer tank inventory')">Check fertilizer inventory</button>
+<button class="text-xs bg-gray-100 rounded-full px-3 py-2" onclick="appendAssistantQuery('Schedule thermal drone follow-up inspection')">Schedule drone inspection</button>
+</div>
+
+<div class="flex gap-2">
+<input id="copilotInput" class="flex-1 min-w-0 bg-gray-100 rounded-lg px-3 py-2 text-sm"
+placeholder="Ask AI agronomist or prescribe action..." type="text">
+<button id="copilotSendButton" class="bg-primary text-white px-4 rounded-lg">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+</div>
+
+<!-- AGRONOMIST SIGN OFF -->
+<div class="mt-2 p-4 rounded-xl bg-green-50 flex flex-wrap items-center justify-between gap-3">
+<div>
+<div class="font-bold text-primary">Dr. Elena Rostova</div>
+<div class="text-xs text-gray-600">Lead Agronomist • Online for Sign-off</div>
+</div>
+<button id="globalVerificationButton" class="px-4 py-2 rounded-lg bg-secondary text-white hover:bg-primary text-sm font-semibold">
+1-Click Verification
+</button>
+</div>
+</div>
+
+</div>
+</div>
+</main>
+</div>
+
+<!-- NAVIGATION DOCK -->
+<div id="agrisense-nav-dock" style="position:fixed;bottom:16px;right:16px;z-index:99999;display:flex;align-items:center;gap:8px;background:rgba(1,45,29,.95);backdrop-filter:blur(12px);border:1px solid rgba(108,248,187,.3);padding:8px 12px;border-radius:9999px;box-shadow:0 10px 25px -5px rgba(0,0,0,.5);font-family:Inter,sans-serif;font-size:12px;flex-wrap:wrap;">
+<a href="index.html" style="color:#6cf8bb;text-decoration:none;font-weight:700;padding:4px 8px;">🏠 Hub</a>
+<a href="3_farm_overview_live_telemetry.html" style="color:white;text-decoration:none;padding:4px;">Overview</a>
+<a href="1_field_crop_health_inspector.html" style="color:white;text-decoration:none;padding:4px;">Inspector</a>
+<a href="2_irrigation_resource_management.html" style="color:white;text-decoration:none;padding:4px;">Irrigation</a>
+<a href="4_agri_ai_diagnostic_advisory.html" style="color:#6cf8bb;text-decoration:none;padding:4px;">AI Diagnostic</a>
+<a href="5_high_tech_agricultural_field_dawn.html" style="color:white;text-decoration:none;padding:4px;">Showcase</a>
+<a href="6_enterprise_login_authentication.html" style="color:#6cf8bb;text-decoration:none;padding:4px;">Login</a>
+</div>
+
+<!-- ORGANIC ALTERNATIVE AND QUICK PROMPTS -->
+<script>
+(function () {
+  const organicToggle = document.getElementById("organicToggle");
+  const rxAgent = document.getElementById("rxAgent");
+  const rxRate = document.getElementById("rxRate");
+
+  if (organicToggle && rxAgent && rxRate) {
+    organicToggle.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        rxAgent.textContent = "Copper Octanoate + Bacillus subtilis";
+        rxRate.textContent = "Rate: 2.0 qts / acre (Biological Active)";
+      } else {
+        rxAgent.textContent = "Azoxystrobin + Propiconazole";
+        rxRate.textContent = "Rate: 14.0 fl oz / acre";
+      }
+    });
+  }
+
+  window.appendAssistantQuery = function (queryText) {
+    const input = document.getElementById("copilotInput");
+    if (input) {
+      input.value = queryText;
+      input.focus();
+    }
+  };
+})();
+</script>
+
+<!-- LIVE BACKEND INTEGRATION AND VERIFICATION -->
+<script id="agrisense-diagnostic-live-integration">
+(function () {
+  "use strict";
+
+  const anomaliesUrl = "/api/diagnostics/anomalies";
+  const recommendationsUrl = "/api/diagnostics/recommendations";
+
+  let anomalies = [];
+  let recommendations = [];
+  let loading = false;
+
+  const status = document.getElementById("agrisense-diagnostic-status");
+  const results = document.getElementById("agrisense-diagnostic-results");
+  const verificationButton = document.getElementById("globalVerificationButton");
+
+  const csvButton = document.getElementById("exportPrescriptionButton");
+  const rigButton = document.getElementById("transmitRigButton");
+  const input = document.getElementById("copilotInput");
+  const sendButton = document.getElementById("copilotSendButton");
+  const chatStream = document.getElementById("copilotChatStream");
+
+  async function getJson(url) {
+    const response = await fetch(url, {
+      method: "GET",
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    });
+
+    if (response.status === 401 || response.status === 403) {
+      throw new Error("Login session expired or access denied. Please log in again.");
+    }
+
+    if (!response.ok) {
+      throw new Error("Server returned HTTP " + response.status);
+    }
+
+    return response.json();
+  }
+
+  function getArray(data) {
+    if (Array.isArray(data)) return data;
+    if (data && Array.isArray(data.content)) return data.content;
+    if (data && Array.isArray(data.data)) return data.data;
+    return [];
+  }
+
+  function addText(parent, tag, text, style) {
+    const element = document.createElement(tag);
+    element.textContent = text;
+    if (style) element.style.cssText = style;
+    parent.appendChild(element);
+    return element;
+  }
+
+  function getRelatedRecommendations(item) {
+    return recommendations.filter(function (r) {
+      return Number(r.anomalyId) === Number(item.id);
+    });
+  }
+
+  function renderDiagnostics() {
+    if (!results) return;
+
+    results.replaceChildren();
+
+    const pending = anomalies.filter(function (item) {
+      return !item.verified;
+    });
+
+    if (verificationButton) {
+      verificationButton.disabled = pending.length === 0;
+      verificationButton.textContent = pending.length === 0
+        ? "All Records Verified"
+        : "1-Click Verification";
+
+      verificationButton.style.opacity = pending.length === 0 ? "0.65" : "1";
+      verificationButton.style.cursor = pending.length === 0 ? "not-allowed" : "pointer";
+    }
+
+    if (!anomalies.length) {
+      addText(results, "p", "No diagnostic anomalies are currently available.");
+      return;
+    }
+
+    anomalies.forEach(function (item) {
+      const card = document.createElement("div");
+
+      card.style.cssText =
+        "padding:14px;margin:10px 0;background:white;" +
+        "border:1px solid #d8e8df;border-radius:10px;";
+
+      addText(
+        card,
+        "strong",
+        (item.anomalyType || "Diagnostic finding") +
+        " — Sector " + (item.sector || "Unknown"),
+        "font-size:15px;color:#153d2b;"
+      );
+
+      addText(
+        card,
+        "p",
+        item.description || "No description supplied.",
+        "margin-top:7px;font-size:13px;color:#374151;"
+      );
+
+      const confidence = typeof item.confidence === "number"
+        ? (item.confidence * 100).toFixed(0) + "%"
+        : "Not provided";
+
+      addText(
+        card,
+        "p",
+        "Confidence: " + confidence +
+        " | Status: " + (item.resolved ? "Resolved" : "Open"),
+        "font-size:12px;margin-top:7px;color:#527264;"
+      );
+
+      if (item.verified) {
+        addText(
+          card,
+          "p",
+          "✓ Verified by: " + (item.verifiedBy || "Agronomist") +
+          " | " + (
+            item.verifiedAt
+              ? new Date(item.verifiedAt).toLocaleString()
+              : "Time unavailable"
+          ),
+          "font-size:12px;margin-top:8px;color:#16804a;font-weight:700;"
+        );
+      } else {
+        addText(
+          card,
+          "p",
+          "Verification: Pending",
+          "font-size:12px;margin-top:8px;color:#9a6500;font-weight:700;"
+        );
+
+        const verifyButton = document.createElement("button");
+        verifyButton.type = "button";
+        verifyButton.textContent = "Verify";
+
+        verifyButton.style.cssText =
+          "margin-top:9px;padding:7px 16px;background:#28734b;" +
+          "color:white;border:0;border-radius:6px;cursor:pointer;";
+
+        verifyButton.addEventListener("click", function () {
+          verifyAnomaly(item.id, verifyButton);
+        });
+
+        card.appendChild(verifyButton);
+      }
+
+      getRelatedRecommendations(item).forEach(function (recommendation) {
+        addText(
+          card,
+          "p",
+          "Recommendation (" + (recommendation.priority || "Normal") +
+          "): " + (recommendation.recommendation || "No recommendation supplied."),
+          "margin:8px 0 0 10px;padding-left:10px;" +
+          "border-left:3px solid #6caa87;font-size:13px;"
+        );
+      });
+
+      results.appendChild(card);
+    });
+  }
+
+  async function loadDiagnostics() {
+    if (loading) return;
+    loading = true;
+
+    try {
+      const data = await Promise.all([
+        getJson(anomaliesUrl),
+        getJson(recommendationsUrl)
+      ]);
+
+      anomalies = getArray(data[0]);
+      recommendations = getArray(data[1]);
+
+      if (status) {
+        status.textContent = "● LIVE — " + anomalies.length + " findings";
+        status.style.color = "#16804a";
+      }
+
+      renderDiagnostics();
+    } catch (error) {
+      if (status) {
+        status.textContent = "● CONNECTION ERROR";
+        status.style.color = "#b42318";
+      }
+
+      if (results) {
+        results.textContent = error.message;
+      }
+
+      console.error("AgriSense diagnostics:", error);
+    } finally {
+      loading = false;
+    }
+  }
+
+  async function verifyAnomaly(id, button) {
+    const originalText = button ? button.textContent : "Verify";
+
+    try {
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Verifying...";
+      }
+
+      if (verificationButton) {
+        verificationButton.disabled = true;
+      }
+
+      // Get a fresh CSRF token from Spring Security.
+      const csrfResponse = await fetch("/api/auth/csrf", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: { "Accept": "application/json" }
+      });
+
+      if (!csrfResponse.ok) {
+        throw new Error("Unable to get security token. Please log in again.");
+      }
+
+      const csrfData = await csrfResponse.json();
+
+      if (!csrfData.token || !csrfData.headerName) {
+        throw new Error("Invalid CSRF token received from server.");
+      }
+
+      const headers = {
+        "Accept": "application/json"
+      };
+
+      headers[csrfData.headerName] = csrfData.token;
+
+      // Save verification in the backend database.
+      const response = await fetch(
+        anomaliesUrl + "/" + encodeURIComponent(id) + "/verify",
+        {
+          method: "PUT",
+          credentials: "same-origin",
+          headers: headers
+        }
+      );
+
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(
+          "Access denied. Please check your login and Agronomist/Farm Owner role."
+        );
+      }
+
+      if (response.status === 404) {
+        throw new Error("Diagnostic record not found.");
+      }
+
+      if (!response.ok) {
+        throw new Error("Verification failed. HTTP " + response.status);
+      }
+
+      const verifiedRecord = await response.json();
+
+      if (!verifiedRecord.verified) {
+        throw new Error("Server did not confirm the verification.");
+      }
+
+      alert(
+        "Diagnostic verification saved successfully!\n\n" +
+        "Anomaly ID: " + verifiedRecord.id + "\n" +
+        "Verified by: " + (verifiedRecord.verifiedBy || "Unknown") + "\n" +
+        "Verified at: " +
+        (verifiedRecord.verifiedAt
+          ? new Date(verifiedRecord.verifiedAt).toLocaleString()
+          : "Time unavailable")
+      );
+
+      await loadDiagnostics();
+
+    } catch (error) {
+      alert(error.message);
+      console.error("Verification error:", error);
+
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+
+      if (verificationButton) {
+        verificationButton.disabled = false;
+      }
+    }
+  }
+
+  function csvCell(value) {
+    const text = String(value == null ? "" : value);
+    return '"' + text.replace(/"/g, '""') + '"';
+  }
+
+  function exportCsv() {
+    if (!anomalies.length) {
+      alert("No diagnostic records available for export.");
+      return;
+    }
+
+    const rows = [[
+      "Anomaly ID",
+      "Type",
+      "Sector",
+      "Confidence",
+      "Description",
+      "Resolved",
+      "Verified",
+      "Verified By",
+      "Verified At",
+      "Recommendation",
+      "Priority"
+    ]];
+
+    anomalies.forEach(function (a) {
+      const related = getRelatedRecommendations(a);
+
+      const base = [
+        a.id,
+        a.anomalyType,
+        a.sector,
+        a.confidence,
+        a.description,
+        a.resolved,
+        a.verified,
+        a.verifiedBy,
+        a.verifiedAt
+      ];
+
+      if (!related.length) {
+        rows.push(base.concat(["", ""]));
+      } else {
+        related.forEach(function (r) {
+          rows.push(base.concat([
+            r.recommendation,
+            r.priority
+          ]));
+        });
+      }
+    });
+
+    const csv = rows.map(function (row) {
+      return row.map(csvCell).join(",");
+    }).join("\r\n");
+
+    const blob = new Blob(["\uFEFF" + csv], {
+      type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "AgriSense_Diagnostic_Report.csv";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function addChatMessage(message, isUser) {
+    if (!chatStream) {
+      alert(message);
+      return;
+    }
+
+    const bubble = document.createElement("div");
+
+    bubble.style.cssText =
+      "padding:10px 12px;margin:8px 0;border-radius:10px;" +
+      "font-size:13px;white-space:pre-wrap;" +
+      (isUser
+        ? "background:#e2f2e9;margin-left:25px;"
+        : "background:#f1f5f2;margin-right:15px;");
+
+    bubble.textContent = message;
+    chatStream.appendChild(bubble);
+    chatStream.scrollTop = chatStream.scrollHeight;
+
+    if (input) input.value = "";
+  }
+
+  function answerCopilot() {
+    if (!input) return;
+
+    const question = input.value.trim();
+    if (!question) return;
+
+    addChatMessage(question, true);
+
+    if (!anomalies.length) {
+      addChatMessage(
+        "I cannot access live diagnostic records. Please check the backend connection and login session.",
+        false
+      );
+      return;
+    }
+
+    const q = question.toLowerCase();
+
+    let matching = anomalies.filter(function (a) {
+      const sector = String(a.sector || "").toLowerCase();
+      const type = String(a.anomalyType || "").toLowerCase();
+      const description = String(a.description || "").toLowerCase();
+
+      return (
+        (sector && q.includes(sector)) ||
+        (type && q.includes(type)) ||
+        (description && q.includes(description.split(" ")[0]))
+      );
+    });
+
+    if (
+      q.includes("recommend") ||
+      q.includes("action") ||
+      q.includes("treatment") ||
+      q.includes("all") ||
+      q.includes("status") ||
+      q.includes("diagnostic") ||
+      q.includes("verification")
+    ) {
+      matching = anomalies;
+    }
+
+    if (!matching.length) {
+      matching = anomalies;
+    }
+
+    const answer = matching.map(function (a) {
+      const recs = getRelatedRecommendations(a);
+
+      const confidence = typeof a.confidence === "number"
+        ? (a.confidence * 100).toFixed(0) + "%"
+        : "Not provided";
+
+      const verification = a.verified
+        ? "Verified by " + (a.verifiedBy || "Agronomist") +
+          (a.verifiedAt
+            ? " at " + new Date(a.verifiedAt).toLocaleString()
+            : "")
+        : "Pending";
+
+      return (
+        "Sector " + (a.sector || "Unknown") +
+        " — " + (a.anomalyType || "Finding") +
+        "\nFinding: " + (a.description || "Not available") +
+        "\nConfidence: " + confidence +
+        "\nVerification: " + verification +
+        (recs.length
+          ? "\nRecommendation: " +
+            recs.map(function (r) {
+              return r.recommendation + " [" + (r.priority || "Normal") + "]";
+            }).join("; ")
+          : "\nNo linked recommendation available.")
+      );
+    }).join("\n\n");
+
+    addChatMessage(
+      "Based on the live backend records:\n\n" +
+      answer +
+      "\n\nThis is a data-based assistant response, not a generative AI diagnosis. Confirm treatment decisions with an agronomist.",
+      false
+    );
+  }
+
+  // CSV export
+  if (csvButton) {
+    csvButton.addEventListener("click", exportCsv);
+  }
+
+  // Physical rig is not connected to a backend endpoint.
+  if (rigButton) {
+    rigButton.addEventListener("click", function () {
+      alert(
+        "Hardware transmission is not connected to a backend endpoint yet. No spray command was sent to the rig."
+      );
+    });
+  }
+
+  // Global 1-Click Verification
+  if (verificationButton) {
+    verificationButton.addEventListener("click", function () {
+      const pending = anomalies.find(function (item) {
+        return !item.verified;
+      });
+
+      if (!pending) {
+        alert("All diagnostic findings are already verified.");
+        return;
+      }
+
+      const confirmed = confirm(
+        "Verify this diagnostic record?\n\n" +
+        "Finding: " + (pending.anomalyType || "Diagnostic finding") +
+        "\nSector: " + (pending.sector || "Unknown") +
+        "\nAnomaly ID: " + pending.id
+      );
+
+      if (confirmed) {
+        verifyAnomaly(pending.id, verificationButton);
+      }
+    });
+  }
+
+  // Copilot send button
+  if (sendButton) {
+    sendButton.addEventListener("click", answerCopilot);
+  }
+
+  // Enter key sends Copilot message
+  if (input) {
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        answerCopilot();
+      }
+    });
+  }
+
+  // Initial data load
+  loadDiagnostics();
+
+  // Refresh live records every 30 seconds
+  window.setInterval(loadDiagnostics, 30000);
+
+})();
+</script>
+
+</body>
+</html>

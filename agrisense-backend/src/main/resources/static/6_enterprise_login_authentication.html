@@ -1,0 +1,488 @@
+﻿
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense OS â€” Enterprise Telemetry &amp; Agronomy Authentication</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    950: '#0b2318',
+                    900: '#143826',
+                    800: '#1b4332',
+                    700: '#1e6f43',
+                    600: '#2d8a57',
+                    500: '#38a169',
+                    400: '#48c774',
+                    300: '#6ee7b7',
+                    100: '#dcfce7',
+                    50: '#f0fdf4'
+                },
+                surface: {
+                    canvas: '#f8fafc',
+                    card: '#ffffff',
+                    muted: '#f1f5f9',
+                    border: '#e2e8f0',
+                    input: '#f8fafc'
+                },
+                charcoal: {
+                    900: '#0f172a',
+                    700: '#334155',
+                    500: '#64748b',
+                    400: '#94a3b8'
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['"JetBrains Mono"', 'monospace']
+            },
+            boxShadow: {
+                'glow-subtle': '0 0 25px -5px rgba(72, 199, 116, 0.25)',
+                'card-elevated': '0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(226, 232, 240, 0.8)'
+            }
+        }
+    }
+};
+</script>
+
+<style>
+body {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+.glass-card {
+    background: rgba(11, 35, 24, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.badge-pulsate::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 9999px;
+    background-color: inherit;
+    animation: pulse-ring 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    z-index: -1;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(2.2); opacity: 0; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+</style>
+</head>
+
+<body class="h-full bg-surface-canvas text-charcoal-900 font-sans antialiased selection:bg-brand-400 selection:text-brand-950">
+
+<main class="min-h-screen w-full flex flex-col lg:flex-row">
+
+<!-- LEFT HERO PANEL -->
+<section class="relative lg:w-[55%] min-h-[500px] lg:min-h-screen flex flex-col justify-between p-8 sm:p-12 lg:p-16 overflow-hidden bg-brand-950">
+
+<img alt="Modern high-tech agricultural field at dawn"
+class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8x0-giLZbPuTkXHmM-Cr3uSwTW0UMQk7TYi1avQyjXyo0BFdhyAF5vxttsQGz5CdT_w1hwVUGu3v846eubZXTzxBHwG5B1o_0FmcUDWFJ7gGV1ZFhl4-4nPw3boJs1or5Z0KCFoUO0M3Ca7e2Q-4PSXgjojl4waiT7hgVi1NZ5W9vCnOozFTdmkxOrS-RCxYc0oUstljD_b9MQT0N8yM07vj7x2gmbWDYKoCjzKh7"/>
+
+<div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/75 to-brand-950/50 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/50 to-transparent"></div>
+
+<div class="relative z-10">
+
+<div class="flex items-center space-x-3.5 mb-8">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-400 via-brand-600 to-brand-800 flex items-center justify-center shadow-lg shadow-brand-400/20 border border-brand-300/40">
+<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5-.092.661-.417.661-.75v-2.62c0-.585-.198-.968-.423-1.162 2.378-.264 4.877-1.189 4.877-5.293 0-1.166-.416-2.119-1.099-2.866.11-.27.476-1.355-.105-2.825 0 0-.897-.287-2.938 1.095A10.22 10.22 0 0012 6.844c-.896 0-1.798.12-2.633.354-2.042-1.382-2.94-1.095-2.94-1.095-.58 1.47-.215 2.555-.104 2.825-.684.747-1.1 1.7-1.1 2.866 0 4.114 2.495 5.026 4.88 5.289-.176.155-.333.432-.388.837"/>
+<path d="M12 2a10 10 0 0 1 10 10c0 4.14-2.52 7.7-6.14 9.17"/>
+</svg>
+</div>
+
+<div>
+<div class="flex items-center space-x-2">
+<span class="text-2xl font-bold tracking-tight text-white">AgriSense</span>
+<span class="px-2 py-0.5 text-[10px] uppercase font-mono font-semibold tracking-wider bg-brand-400/20 text-brand-300 border border-brand-400/30 rounded">OS v3.8.4</span>
+</div>
+<p class="text-xs text-brand-100/80 font-medium tracking-wide">Digital Farming Assistant â€¢ Enterprise IoT Cloud</p>
+</div>
+</div>
+
+<div class="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-brand-900/60 border border-brand-400/30 backdrop-blur-md mb-6">
+<span class="relative flex h-2.5 w-2.5">
+<span class="badge-pulsate absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-400"></span>
+</span>
+<span class="font-mono text-xs uppercase tracking-wider text-brand-300 font-medium">Telemetry Grid Active: 5.4k Hectares Synced</span>
+</div>
+
+<h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] max-w-xl">
+Precision Intelligence from Soil to Satellite.
+</h1>
+
+<p class="mt-4 text-base text-gray-200/90 max-w-lg font-normal leading-relaxed">
+Unifying autonomous fleet operations, hyper-local LoRaWAN subterranean sensors, and predictive pathology models into a single operational glass cockpit.
+</p>
+
+<div class="mt-8 space-y-4 max-w-lg">
+
+<div class="flex items-start space-x-3">
+<div class="flex-shrink-0 mt-1 w-6 h-6 rounded-md bg-brand-700/60 border border-brand-400/40 flex items-center justify-center text-brand-300">âš¡</div>
+<div>
+<h2 class="text-sm font-semibold text-white">Autonomous Drone &amp; Sentinel-2 Multispectral Ingestion</h2>
+<p class="text-xs text-gray-300 leading-normal">Sub-centimeter NDVI resolution and multispectral nitrogen deficiency alerts synced every 4 hours.</p>
+</div>
+</div>
+
+<div class="flex items-start space-x-3">
+<div class="flex-shrink-0 mt-1 w-6 h-6 rounded-md bg-brand-700/60 border border-brand-400/40 flex items-center justify-center text-brand-300">â–¦</div>
+<div>
+<h2 class="text-sm font-semibold text-white">Real-Time LoRaWAN Rootzone Soil Telemetry Mesh</h2>
+<p class="text-xs text-gray-300 leading-normal">Continuous volumetric water content, EC salinity, and deep-soil thermal gradients at 15cm &amp; 45cm.</p>
+</div>
+</div>
+
+<div class="flex items-start space-x-3">
+<div class="flex-shrink-0 mt-1 w-6 h-6 rounded-md bg-brand-700/60 border border-brand-400/40 flex items-center justify-center text-brand-300">âœ¦</div>
+<div>
+<h2 class="text-sm font-semibold text-white">Agri-AI Diagnostic &amp; Prescriptive Pathology Engine</h2>
+<p class="text-xs text-gray-300 leading-normal">Real-time blight risk modeling and automated variable-rate spray prescriptions loaded directly to sprayers.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<aside class="relative z-10 mt-12 glass-card rounded-2xl p-5 border border-white/10 shadow-2xl">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-3 mb-3">
+<div class="flex items-center space-x-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-400"></span>
+<span class="text-xs font-mono font-medium tracking-wide uppercase text-white">Sector Alpha: Highland Ridge Orchards &amp; Fields</span>
+</div>
+<span class="text-[11px] font-mono bg-brand-500/20 text-brand-300 px-2.5 py-0.5 rounded-full border border-brand-400/30">ALL SYSTEMS NOMINAL</span>
+</div>
+
+<div class="grid grid-cols-3 gap-3 text-left">
+<div class="bg-black/20 p-2.5 rounded-lg border border-white/5">
+<span class="block text-[10px] text-gray-400 font-mono tracking-wider uppercase">Cluster Mesh</span>
+<span class="text-xs sm:text-sm font-mono font-bold text-white">48/48 Online</span>
+</div>
+<div class="bg-black/20 p-2.5 rounded-lg border border-white/5">
+<span class="block text-[10px] text-gray-400 font-mono tracking-wider uppercase">LoRa Latency</span>
+<span class="text-xs sm:text-sm font-mono font-bold text-brand-300">14 ms avg</span>
+</div>
+<div class="bg-black/20 p-2.5 rounded-lg border border-white/5">
+<span class="block text-[10px] text-gray-400 font-mono tracking-wider uppercase">Uptime SLA</span>
+<span class="text-xs sm:text-sm font-mono font-bold text-white">99.98%</span>
+</div>
+</div>
+</aside>
+
+</section>
+
+<!-- RIGHT LOGIN PANEL -->
+<section class="lg:w-[45%] flex flex-col justify-between bg-surface-canvas p-6 sm:p-10 lg:p-14 overflow-y-auto">
+
+<div class="flex items-center justify-between text-xs text-charcoal-500 border-b border-surface-border pb-4 mb-6">
+<div class="flex items-center space-x-1.5 font-medium">
+<span class="text-brand-700">ðŸ›¡</span>
+<span class="font-mono text-[11px] text-charcoal-700">TLS 1.3 â€¢ OAuth2 / Ed25519 JWT</span>
+</div>
+<div class="text-[11px] font-mono text-charcoal-500 bg-surface-muted px-2.5 py-1 rounded-md border border-surface-border">
+<span class="text-brand-500">â—</span> US-East (AWS Oregon)
+</div>
+</div>
+
+<div class="max-w-md w-full mx-auto my-auto space-y-6">
+
+<header class="text-left space-y-1">
+<h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-charcoal-900">Sign in to AgriSense OS</h2>
+<p class="text-sm text-charcoal-500">Enter your agronomy credentials or corporate SSO credentials to access field operations.</p>
+</header>
+
+<!-- ROLE SELECTOR -->
+<div class="p-1 bg-surface-muted rounded-xl border border-surface-border flex text-xs font-medium" role="tablist">
+
+<button aria-selected="true" class="flex-1 py-2 px-2.5 rounded-lg font-semibold text-charcoal-900 bg-white shadow-sm border border-black/5" id="tab-agronomist" onclick="switchTab('agronomist')" type="button">
+Agronomist &amp; Ops
+</button>
+
+<button aria-selected="false" class="flex-1 py-2 px-2.5 rounded-lg text-charcoal-500" id="tab-owner" onclick="switchTab('owner')" type="button">
+Farm Owner / Tenant
+</button>
+
+<button aria-selected="false" class="flex-1 py-2 px-2.5 rounded-lg text-charcoal-500" id="tab-hardware" onclick="switchTab('hardware')" type="button">
+IoT Hardware Eng
+</button>
+
+</div>
+
+<!-- DEMO CREDENTIALS -->
+<div class="rounded-lg bg-emerald-50/80 border border-emerald-200/80 p-3 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">i</span>
+<div class="text-xs">
+<span class="font-semibold text-brand-950">Academic / Demo Mode:</span>
+<span class="text-charcoal-700 block sm:inline"> Marcus Vance (Chief Agronomist)</span>
+</div>
+</div>
+
+<button class="text-xs font-mono font-medium text-brand-700 hover:text-brand-900 bg-white px-2 py-1 rounded border border-emerald-300" onclick="applyDemoCredentials()" type="button">
+Prefill
+</button>
+</div>
+
+<!-- LOGIN FORM -->
+<form class="space-y-4" onsubmit="event.preventDefault(); simulateSignIn();">
+
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5" for="work-email">
+Work Email or Farm License ID
+</label>
+
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal-400">âœ‰</div>
+
+<input class="block w-full pl-10 pr-3.5 py-2.5 text-sm bg-surface-input border border-surface-border rounded-lg text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-brand-600"
+id="work-email" name="email" placeholder="marcus.vance@highlandridge.ag" required type="email"/>
+</div>
+</div>
+
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700" for="password-input">
+Security Passcode / Password
+</label>
+<a class="text-xs font-medium text-brand-700" href="#reset">Forgot password?</a>
+</div>
+
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full pl-3.5 pr-10 py-2.5 text-sm bg-surface-input border border-surface-border rounded-lg font-mono"
+id="password-input" name="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required type="password"/>
+
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-charcoal-400" onclick="togglePasswordVisibility()" type="button">
+<svg class="h-4 w-4" id="eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>
+</button>
+</div>
+</div>
+
+<div class="flex items-center justify-between pt-1">
+<label class="flex items-center text-xs text-charcoal-700">
+<input checked class="h-4 w-4 text-brand-600 rounded" id="remember-device" type="checkbox"/>
+<span class="ml-2">Trust this edge device for 30 days</span>
+</label>
+<span class="text-[11px] text-charcoal-400 font-mono">Token: Ed25519</span>
+</div>
+
+<button class="w-full mt-2 py-3 px-4 rounded-xl text-white font-semibold text-sm bg-gradient-to-r from-brand-800 via-brand-700 to-brand-600 hover:from-brand-900 hover:to-brand-700 shadow-md transition-all flex items-center justify-center space-x-2" id="btn-submit" type="submit">
+<span>Sign In to Telemetry Console</span>
+<span>â†’</span>
+</button>
+
+</form>
+
+<div class="relative my-5">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-border"></div>
+</div>
+<div class="relative flex justify-center text-xs">
+<span class="bg-surface-canvas px-3 text-charcoal-400 font-medium">Or authenticate with agronomy SSO</span>
+</div>
+</div>
+
+<div class="grid grid-cols-1 gap-2.5">
+<button class="w-full py-2.5 px-3 rounded-lg border border-surface-border bg-white text-charcoal-700 font-medium text-xs" type="button">
+Sign in with John Deere Operations Center
+</button>
+<button class="w-full py-2.5 px-3 rounded-lg border border-surface-border bg-white text-charcoal-700 font-medium text-xs" type="button">
+Climate FieldView Cloud Connect
+</button>
+<button class="w-full py-2.5 px-3 rounded-lg border border-surface-border bg-white text-charcoal-700 font-medium text-xs" type="button">
+Google Enterprise Workspace
+</button>
+</div>
+
+</div>
+
+<footer class="mt-8 pt-4 border-t border-surface-border text-center text-xs text-charcoal-400 space-y-2">
+<div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+<span class="inline-flex items-center text-emerald-700 font-medium">â— Telemetry Grid: Nominal (100%)</span>
+<a href="#privacy">Privacy Policy</a>
+<a href="#compliance">SOC2 Type II &amp; ISO 27001</a>
+<a href="#support">Agronomy Support 24/7</a>
+</div>
+<p class="text-[11px]">Protected by AgriSense Zero-Trust Edge Security Gateway. Â© 2025 AgriSense OS.</p>
+</footer>
+
+</section>
+</main>
+
+<!-- QUICK NAVIGATION -->
+<div id="agrisense-nav-dock" style="position:fixed;bottom:16px;right:16px;z-index:99999;display:flex;align-items:center;gap:8px;background:rgba(1,45,29,.95);backdrop-filter:blur(12px);border:1px solid rgba(108,248,187,.3);padding:8px 12px;border-radius:9999px;box-shadow:0 10px 25px -5px rgba(0,0,0,.5);font-family:Inter,system-ui,sans-serif;font-size:12px;">
+<a href="index.html" style="color:#6cf8bb;text-decoration:none;font-weight:700;padding:4px 8px;">ðŸ  Hub</a>
+<a href="3_farm_overview_live_telemetry.html" style="color:#e2e7ff;text-decoration:none;padding:4px 6px;">Overview</a>
+<a href="1_field_crop_health_inspector.html" style="color:#e2e7ff;text-decoration:none;padding:4px 6px;">Inspector</a>
+<a href="2_irrigation_resource_management.html" style="color:#e2e7ff;text-decoration:none;padding:4px 6px;">Irrigation</a>
+<a href="4_agri_ai_diagnostic_advisory.html" style="color:#e2e7ff;text-decoration:none;padding:4px 6px;">AI Diagnostic</a>
+<a href="5_high_tech_agricultural_field_dawn.html" style="color:#e2e7ff;text-decoration:none;padding:4px 6px;">Showcase</a>
+</div>
+
+<!-- LOGIN JAVASCRIPT -->
+<script>
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password-input');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M3 3l18 18"/>
+        `;
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        `;
+    }
+}
+
+function switchTab(role) {
+    const tabs = ['agronomist', 'owner', 'hardware'];
+
+    tabs.forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+
+        if (t === role) {
+            el.className = 'flex-1 py-2 px-2.5 rounded-lg font-semibold text-charcoal-900 bg-white shadow-sm border border-black/5';
+            el.setAttribute('aria-selected', 'true');
+        } else {
+            el.className = 'flex-1 py-2 px-2.5 rounded-lg text-charcoal-500';
+            el.setAttribute('aria-selected', 'false');
+        }
+    });
+
+    const emailInput = document.getElementById('work-email');
+
+    if (role === 'agronomist') {
+        emailInput.placeholder = 'marcus.vance@highlandridge.ag';
+    } else if (role === 'owner') {
+        emailInput.placeholder = 'elena.reed@highlandridge.ag';
+    } else {
+        emailInput.placeholder = 'tech@highlandridge.ag';
+    }
+
+    emailInput.value = '';
+    document.getElementById('password-input').value = '';
+}
+
+function applyDemoCredentials() {
+    const emailInput = document.getElementById('work-email');
+    const passwordInput = document.getElementById('password-input');
+
+    emailInput.value = 'marcus.vance@highlandridge.ag';
+    // Enter the demo password manually.
+
+    emailInput.dispatchEvent(new Event('input', { bubbles: true }));
+    passwordInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+    emailInput.classList.add('ring-2', 'ring-brand-500');
+    passwordInput.classList.add('ring-2', 'ring-brand-500');
+
+    setTimeout(() => {
+        emailInput.classList.remove('ring-2', 'ring-brand-500');
+        passwordInput.classList.remove('ring-2', 'ring-brand-500');
+    }, 1000);
+}
+
+async function simulateSignIn() {
+    const btn = document.getElementById('btn-submit');
+    const email = document.getElementById('work-email').value.trim();
+    const password = document.getElementById('password-input').value;
+
+    if (!email || !password) {
+        alert('Please enter your email and password.');
+        return;
+    }
+
+    const originalText = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span>Authenticating...</span>';
+
+    try {
+        const loginResponse = await fetch('/api/auth/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!loginResponse.ok) {
+            throw new Error(
+                loginResponse.status === 401
+                    ? 'Invalid email or password.'
+                    : 'Login failed. Please try again.'
+            );
+        }
+
+        const user = await loginResponse.json();
+
+        const csrfResponse = await fetch('/api/auth/csrf', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (!csrfResponse.ok) {
+            throw new Error('Unable to retrieve CSRF token.');
+        }
+
+        const csrfData = await csrfResponse.json();
+
+        sessionStorage.setItem('agrisenseUser', JSON.stringify(user));
+        sessionStorage.setItem('agrisenseCsrfToken', csrfData.token);
+        sessionStorage.setItem('agrisenseCsrfHeader', csrfData.headerName);
+
+        btn.innerHTML = '<span>Telemetry Access Granted âœ“</span>';
+        btn.classList.add('bg-emerald-600');
+
+        setTimeout(() => {
+            window.location.href = '3_farm_overview_live_telemetry.html';
+        }, 700);
+
+    } catch (error) {
+        console.error('Login error:', error);
+        alert(error.message || 'Unable to connect to the server.');
+
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Java / Maven build files
+**/target/
+**/build/
+*.class
+
+# Local databases
+**/data/
+*.mv.db
+*.trace.db
+*.db
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+
+# IDE files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Temporary backup files
+*.backup
+*.before-*

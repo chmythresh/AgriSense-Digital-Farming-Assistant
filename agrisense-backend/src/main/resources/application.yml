@@ -1,0 +1,35 @@
+
+spring:
+  application:
+    name: agrisense-backend
+
+  datasource:
+    url: "jdbc:mysql://localhost:3306/agrisense_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata"
+    username: root
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: lax
+
+agrisense:
+  demo:
+    password: ${AGRISENSE_DEMO_PASSWORD}
+
+
